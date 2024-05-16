@@ -1,0 +1,70 @@
+package com.automationtesting.java;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class ButtonsTesting {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+        System.setProperty("webdriver.chrome.driver", "C:\\Java\\chromedriver\\chromedriver-win32\\chromedriver.exe");
+		
+        
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.leafground.com/button.xhtml");
+	
+		
+		WebElement button1 = driver.findElement(By.xpath("//span[contains(text(),'Click')]"));
+		button1.click();
+		driver.navigate().back();
+		Thread.sleep(2000);
+		
+		WebElement button2 = driver.findElement(By.xpath("//body/div[1]/div[5]/div[2]/form[1]/div[1]/div[1]/div[2]"));
+		 if (!button2.isEnabled()) {
+				System.out.println("Button is disabled ");
+			} 
+			 else {
+				System.out.println("Button is Enabled");
+			}
+		Thread.sleep(2000);
+		
+		WebElement button3 = driver.findElement(By.xpath("//body/div[1]/div[5]/div[2]/form[1]/div[1]/div[1]/div[3]/button[1]/span[2]"));
+		Point xypoint = button3.getLocation();
+		int xpoint = xypoint.getX();
+		int ypoint = xypoint.getY();
+		System.out.println("X value is : "+xpoint+" Y value is: "+ypoint);
+		Thread.sleep(2000);
+		
+		WebElement button4 = driver.findElement(By.xpath("//span[contains(text(),'Save')]"));
+		String color = button4.getCssValue("background-color");
+		System.out.println(color);
+		Thread.sleep(2000);
+		
+		WebElement button5 = driver.findElement(By.xpath("//body/div[1]/div[5]/div[2]/form[1]/div[1]/div[2]/div[1]/button[1]/span[2]"));
+		Dimension dim = button5.getSize();
+		System.out.println("Width: "+dim.width+ " Height: "+dim.height);
+		Thread.sleep(2000);
+		
+		
+		WebElement button6 = driver.findElement(By.xpath("//body/div[1]/div[5]/div[2]/form[1]/div[1]/div[2]/div[2]/button[1]/span[1]"));
+		Actions action = new Actions(driver);
+		action.moveToElement(button6).build().perform();
+		String color1 = button6.getCssValue("background-color");
+     	System.out.println(color1);
+		Thread.sleep(2000);
+     	
+     	WebElement button7 = driver.findElement(By.xpath("//span[contains(text(),'Image')]"));
+     	button7.click();
+		Thread.sleep(2000);
+     	
+
+     	
+     	
+}
+}
